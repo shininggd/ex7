@@ -5,40 +5,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<form action="fileUpload" method="post" enctype="multipart/form-data">
-네임:<input type="text" name="name"><br>
-파일:<input type="file" name="f1"><br>
-<button>떼스트</button>
 
-
-</form>
-<br>
-<br>
-<br>
-<br>
-<form action="multiFileUpload" method="post" enctype="multipart/form-data">
-네임:<input type="text" name="name"><br>
-파일:<input type="file" name="f1"><br>
-파일:<input type="file" name="f2"><br>
-
-<button>떼스트</button>
-
-</form>
-<br>
-<br>
-<br>
-<br>
+<input type="button" id="add" value="file add">
 <form action="sameMultiFileUpload" method="post" enctype="multipart/form-data">
-네임:<input type="text" name="name"><br>
-파일:<input type="file" name="f1"><br>
-파일:<input type="file" name="f1"><br>
+<input type="text" name="name"><br>
+<div id="file">
+
+</div>
+
 
 <button>떼스트</button>
 
 
 </form>
+<script type="text/javascript">
+var t = 0;
+$("#add").click(function() {
+	t = t + 1;
+	if(t <=5){
+	$("#file").append('<p>파일선택 ★ ★ <input type="file" name="f1"><span class="count">x</span> </p>')
+	}else{
+		alert('그만클릭해라 임마야')
+	}
+	
+});
+$("#file").on('.count',click(function () {
+	
+});
+});
+
+</script>
 
 </body>
 </html>

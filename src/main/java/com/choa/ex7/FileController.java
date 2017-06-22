@@ -71,6 +71,7 @@ public class FileController {
 		
 		
 	}
+	//다중파일 업로드 -- 파라미터 이름을 모르거나 갯수가 유동적일때
 	
 	/*//단일 파일 업로드
 	@RequestMapping(value="fileUpload", method=RequestMethod.POST)
