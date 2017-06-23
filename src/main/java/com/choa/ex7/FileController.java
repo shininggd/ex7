@@ -1,6 +1,7 @@
 package com.choa.ex7;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,7 +25,20 @@ import com.choa.file.SameMultiFileDTO;
 @Controller
 @RequestMapping(value="/file/**")
 public class FileController {
-
+	//파라미터 모를 경우를 사용
+	@RequestMapping(value="seUpload",method=RequestMethod.POST)
+	public void seUpload(MultipartHttpServletRequest request){
+		Enumeration<Object> e=request.getParameterNames();
+		while(e.hasMoreElements()){
+			System.out.println(e.nextElement());
+		}
+		Iterator<String> it=request.getFileNames();
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
+		
+	}
+	
 	@RequestMapping(value="fileUpload", method=RequestMethod.GET)
 	public void fileUpload(){
 

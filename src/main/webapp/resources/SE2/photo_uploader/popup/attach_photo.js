@@ -478,7 +478,7 @@
  	 */
  	function callFileUploader (){
  		oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"),{
- 			sUrl  : '/smarteditorSample/SE2/photo_uploader/popup/file_uploader.jsp',	//샘플 URL입니다.
+ 			sUrl  : '/ex7/file/seUpload',//업로드 컨트롤러의 주소	//절대경로로 해야한다.
  			//sUrl  : '/file_uploader.do',	//샘플 URL입니다.
  	        sCallback : '/smarteditorSample/SE2/photo_uploader/popup/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
  	    	sFiletype : "*.jpg;*.png;*.bmp;*.gif",						//허용할 파일의 형식. ex) "*", "*.*", "*.jpg", 구분자(;)	
