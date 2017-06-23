@@ -9,6 +9,7 @@
 <body>
 <h2><a href="../resources/upload/${fileName }">${oriName }</a> </h2>
 <a href="fileDelete?fileName=${fileName }">Delete</a>
+<a href="fileDown?fileName=${fileName }"></a>
 
 </body>
 </html>

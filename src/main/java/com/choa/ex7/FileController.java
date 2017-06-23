@@ -1,9 +1,11 @@
 package com.choa.ex7;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -21,23 +23,59 @@ import com.choa.file.FileDTO;
 import com.choa.file.FileService;
 import com.choa.file.MultiFileDTO;
 import com.choa.file.SameMultiFileDTO;
+import com.choa.util.SeDTO;
 
 @Controller
 @RequestMapping(value="/file/**")
 public class FileController {
-	//파라미터 모를 경우를 사용
+	//스마트 에디터
 	@RequestMapping(value="seUpload",method=RequestMethod.POST)
-	public void seUpload(MultipartHttpServletRequest request){
-		Enumeration<Object> e=request.getParameterNames();
+	public String seUpload(SeDTO seDTO, HttpSession session) throws Exception{
+		/*Enumeration<Object> e=request.getParameterNames();
 		while(e.hasMoreElements()){
 			System.out.println(e.nextElement());
 		}
 		Iterator<String> it=request.getFileNames();
 		while(it.hasNext()){
 			System.out.println(it.next());
+		}이걸로 파라미터 명과 파일이름을 알수 있었다.
+		String callback = seDTO.getCallback();
+		String callback_func = seDTO.getCallback_func();
+		String oriName = seDTO.getFiledata().getOriginalFilename();
+		//default path;
+		String defaultPath = session.getServletContext().getRealPath("resources/upload");
+		//디렉토리가 존재하지 않으면 만듬
+		File f = new File(defaultPath);
+		if(!f.exists()){
+			f.mkdirs();
 		}
+		//디렉토리에 저장할 파일명
+		String realName = UUID.randomUUID().toString()+"_"+oriName;
 		
+		//만들어진걸 디렉토리에 저장
+		seDTO.getFiledata().transferTo(new File(f, realName));*/
+		
+		//최종적으로 리턴
+		/*System.out.println(callback);
+		String file_result = "&bNewLine=true&sFileName="+oriName+"&sFileURL=/ex7/resources/upload/"+realName;
+		요것들을 파일 서비스로 옮겼음*/
+		
+		FileService fileService = new FileService();
+		return fileService.seUpload(seDTO, session);
 	}
+	//파일다운
+	@RequestMapping(value="fileDown", method=RequestMethod.GET)
+	public ModelAndView fileDown(String fileName, HttpSession session) throws Exception{
+		String realPath = session.getServletContext().getRealPath("resources/upload");
+		File file = new File(realPath, fileName);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("download");//클래스 이름을 넣을때, 첫글자는 소문자로
+		mv.addObject("downloadFile", file);
+		
+		return mv;
+	}
+	
+	
 	
 	@RequestMapping(value="fileUpload", method=RequestMethod.GET)
 	public void fileUpload(){
