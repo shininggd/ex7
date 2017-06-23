@@ -10,7 +10,7 @@
 <body>
 
 <input type="button" id="add" value="file add">
-<form action="sameMultiFileUpload" method="post" enctype="multipart/form-data">
+<form action="upload" method="post" enctype="multipart/form-data">
 <input type="text" name="name"><br>
 <div id="file">
 
@@ -26,17 +26,21 @@ var t = 0;
 $("#add").click(function() {
 	t = t + 1;
 	if(t <=5){
-	$("#file").append('<p>파일선택 ★ ★ <input type="file" name="f1"><span class="count">x</span> </p>')
+	$("#file").append('<p">파일선택 ★ ★ <input type="file" name="f1"><span class="del">x</span> </p>')
 	}else{
+		t = 5;
 		alert('그만클릭해라 임마야')
 	}
 	
 });
-$("#file").on('.count',click(function () {
+$("#file").on("click",".del", function () {
+	$(this).parent().remove();
+	t--;
 	
+	if(t < 0){
+		t = 0;
+	}
 });
-});
-
 </script>
 
 </body>
