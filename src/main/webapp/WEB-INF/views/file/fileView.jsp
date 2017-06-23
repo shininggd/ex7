@@ -9,7 +9,7 @@
 <body>
 <h2><a href="../resources/upload/${fileName }">${oriName }</a> </h2>
 <a href="fileDelete?fileName=${fileName }">Delete</a>
-<a href="fileDown?fileName=${fileName }"></a>
+<a href="fileDown?fileName=${fileName }&oriName=${oriName }">다운로드</a>
 
 </body>
 </html>

@@ -65,12 +65,14 @@ public class FileController {
 	}
 	//파일다운
 	@RequestMapping(value="fileDown", method=RequestMethod.GET)
-	public ModelAndView fileDown(String fileName, HttpSession session) throws Exception{
+	public ModelAndView fileDown(String fileName,String oriName, HttpSession session) throws Exception{
 		String realPath = session.getServletContext().getRealPath("resources/upload");
 		File file = new File(realPath, fileName);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("download");//클래스 이름을 넣을때, 첫글자는 소문자로
 		mv.addObject("downloadFile", file);
+		mv.addObject("oriName", oriName);
+		// 둘다 Download 클래스에서 사용된다... 확인하자
 		
 		return mv;
 	}
