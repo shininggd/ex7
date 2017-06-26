@@ -32,6 +32,7 @@
 	
 	<context:component-scan base-package="com.choa.ex7" />
 	<context:component-scan base-package="com.choa.notice" />
+	<context:component-scan base-package="com.choa.memo" />
 	
 	
 	

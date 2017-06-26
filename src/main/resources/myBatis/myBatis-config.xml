@@ -5,7 +5,9 @@
   
   <configuration>
   	<typeAliases>
-   		<typeAlias type="com.choa.notice.NoticeDTO" alias="NoticeDTO"/> 
+   		<typeAlias type="com.choa.notice.NoticeDTO" alias="NoticeDTO"/>
+   		<typeAlias type="com.choa.memo.MemoDTO" alias="MemoDTO"/> 
   	</typeAliases>
+  	
   
   </configuration>
