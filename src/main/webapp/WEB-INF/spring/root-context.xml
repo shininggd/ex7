@@ -5,12 +5,20 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
+
+<!--property 객체로 만든 dataSource 만드는법  -->
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyPlaceholderConfigurer">
+	<property name="locations" >
+		<value>classpath:myBatis/myBatis.properties</value> 
+	</property>
+</bean>
+
 <!--dataSource 만들 것 -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource" >
-	<property name="username" value="user03"/>
-		<property name="password" value="user03"/>
-		<property name="url" value="jdbc:oracle:thin:@192.168.20.59:1521:xe"/>
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	<property name="username" value="${jdbc.user}"/>
+		<property name="password" value="${jdbc.pw}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
 	</bean>
 	
 	
@@ -19,6 +27,7 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
+		<property name="configLocation" value="classpath:myBatis/myBatis-config.xml"/>
 	</bean>
 	<bean class="org.mybatis.spring.SqlSessionTemplate"><!--빨간줄은 생성자 필요라는 뜻-->
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
