@@ -9,7 +9,7 @@
 <script type="text/javascript" src="../resources/js/memo.js"></script>
 <script type="text/javascript">
 $(function () {
-	getList(1,"","");
+	getList(1,"%","%");
 	
 	$("#btn").click(function() {
 		var writer = $("#writer").val();
