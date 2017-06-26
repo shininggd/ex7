@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-	<table>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+${list }    
+<%-- 	<table>
 		<tr>
 			<td>NUM</td><td>CONTENTS</td><td>WRITER</td><td>DATE</td>
 		</tr>
@@ -15,3 +16,4 @@
 		</c:forEach>
 	
 	</table>
+ --%>

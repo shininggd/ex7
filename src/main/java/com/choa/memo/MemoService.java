@@ -18,8 +18,8 @@ public class MemoService {
 		listInfo.makeRow();
 		return memoDAO.list(listInfo);
 	}
-	public void memoView(int num)throws Exception{
-		memoDAO.view(num);
+	public MemoDTO memoView(int num)throws Exception{
+		return memoDAO.view(num);
 	}
 	public int memoWrite(MemoDTO memoDTO)throws Exception{
 		return memoDAO.insert(memoDTO);

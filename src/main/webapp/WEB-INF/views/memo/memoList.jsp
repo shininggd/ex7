@@ -16,6 +16,11 @@ $(function () {
 		var contents = $("#contents").val();
 		memoWrite(writer,contents);
 	});
+	
+	$("#btnView").click(function() {
+		memoView(1);
+		
+	})
 });
 
 </script>
@@ -33,5 +38,7 @@ $(function () {
 	<div id="result">
 	</div>
 
+<button id="btnView">view</button>
+	
 </body>
 </html>
