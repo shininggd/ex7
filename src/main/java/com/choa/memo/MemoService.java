@@ -1,5 +1,7 @@
 package com.choa.memo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,17 +12,17 @@ public class MemoService {
 	@Autowired
 	private MemoDAO memoDAO;
 	
-	public void memoList(ListInfo listInfo)throws Exception{
+	public List<MemoDTO> memoList(ListInfo listInfo)throws Exception{
 		int count = memoDAO.count(listInfo);
 		listInfo.makePage(count);
 		listInfo.makeRow();
-		memoDAO.list(listInfo);
+		return memoDAO.list(listInfo);
 	}
 	public void memoView(int num)throws Exception{
 		memoDAO.view(num);
 	}
-	public void memoWrite(MemoDTO memoDTO)throws Exception{
-		memoDAO.insert(memoDTO);
+	public int memoWrite(MemoDTO memoDTO)throws Exception{
+		return memoDAO.insert(memoDTO);
 	}
 	public void memoUpdate(MemoDTO memoDTO)throws Exception{
 		memoDAO.update(memoDTO);

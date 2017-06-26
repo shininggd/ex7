@@ -3,12 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="MemoMapper">
-  <sql id="search">
+ <mapper namespace="MemoMapper">
+ 	<sql id="search">
  		<trim prefix="where" prefixOverrides="and || or">
- 		<if test="search == 'title'">
- 			title like '%' || #{find} || '%'
- 		</if>
+ 		
  		<if test="search == 'writer'">
  			writer like '%' || #{find} || '%'
  		</if>
@@ -17,32 +15,40 @@
  		</if>
  		</trim>
  	</sql>
-  <select id="count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo">
- 		select count(nvl(num,0)) from memo;
+ 	
+ 	<select id="count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo">
+ 		select count(nvl(num,0)) from memo2
  		<include refid="search"></include>
  	</select>
-  <insert id="write" parameterType="MemoDTO">
-  	insert into memo2 values(memo_seq.nextval,#{writer},#{contents},sysdate)
-  </insert>
-  <select id="list" resultType="MemoDTO" parameterType="com.choa.util.ListInfo">
-  	select * from 
+ 	
+ 	
+ 	<select id="list" resultType="MemoDTO" parameterType="com.choa.util.ListInfo">
+ 		select * from 
  		(select rownum R, N.* from
  		(select * from memo2 
  		<include refid="search" ></include>
  		  order by num desc) N)
  		where R between #{startRow} and #{lastRow}
-  </select>
-  
-  <select id="view" parameterType="java.lang.Integer" resultType="MemoDTO">
-  	
-  	select * from memo2 where num=#{num}
-  </select>
-  
-  <delete id="delete" parameterType="java.lang.Integer">
-  delete from memo2 where num = #{num}
-  </delete>
-  <update id="update" parameterType="MemoDTO">
-  update memo2 set(writer = #{writer}, contents=#{contents}, reg_date=#{reg_date}) where num = #{num}
-  </update>
-  
-  </mapper>
+ 	</select>
+ 	
+ 	<select id="view" resultType="MemoDTO" parameterType="java.lang.Integer">
+ 		select * from memo2 where num=#{num}
+ 	</select>
+ 	
+ 	<insert id="write" parameterType="MemoDTO" >
+ 		insert into memo2 
+ 		values (point_seq.nextval, #{writer}, #{contents}, sysdate)
+ 	</insert>
+ 	
+ 	<update id="update" parameterType="MemoDTO">
+ 		update memo2 
+ 		set
+ 		contents=#{contents}
+ 		where num=#{num}
+ 	</update>
+ 	
+ 	<delete id="delete" parameterType="java.lang.Integer">
+ 		delete memo2 where num=#{num}
+ 	</delete>
+ 	
+ </mapper> 
